@@ -1,14 +1,12 @@
-import React from 'react'
-
-export const metadata = {
-    title : 'test',
-}
-
+import Link from "next/link";
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <div>
+      <h1 className="text-3xl">Welcome</h1>
+      <Link href="/properties">Show properties</Link>
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
