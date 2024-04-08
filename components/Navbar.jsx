@@ -1,10 +1,16 @@
+'use client'
 import Image from "next/image";
 import logo from '@/assets/images/logo-white.png'
 import profileDefault from '@/assets/images/profile.png';
 import Link from "next/link";
 import {FaGoogle} from "react-icons/fa";
+import { useState } from "react";
+
 
 const Navbar = () => {
+  const [isMobileMenuOpen,setisMobileMenuOpen] = useState(false)
+  const [isProfileMenuOpen,setIsProfileMenuOpen] = useState(false)
+
 return(
     <nav className="bg-blue-700 border-b border-blue-500">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -17,6 +23,7 @@ return(
           className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
+          onClick={() => setisMobileMenuOpen((prev) => !prev)}
         >
           <span className="absolute -inset-0.5" />
           <span className="sr-only">Open main menu</span>
@@ -118,6 +125,7 @@ return(
               id="user-menu-button"
               aria-expanded="false"
               aria-haspopup="true"
+              onClick={() => setIsProfileMenuOpen((prev) => !prev)}
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">Open user menu</span>
@@ -129,9 +137,9 @@ return(
             </button>
           </div>
           {/* Profile dropdown */}
-          <div
+         { isProfileMenuOpen && ( <div
             id="user-menu"
-            className="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
@@ -163,13 +171,14 @@ return(
             >
               Sign Out
             </button>
-          </div>
+          </div>)}
         </div>
       </div>
     </div>
   </div>
   {/* Mobile menu, show/hide based on menu state. */}
-  <div className="hidden" id="mobile-menu">
+  {isMobileMenuOpen && (
+  <div id="mobile-menu">
     <div className="space-y-1 px-2 pb-3 pt-2">
       <Link
         href="/"
@@ -194,7 +203,8 @@ return(
         <span>Login or Register</span>
       </button>
     </div>
-  </div>
+  </div> )
+}
 </nav>
 
 )
