@@ -1,8 +1,5 @@
 const Propety = () => {
-  return (
-    <div>
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Propety
+export default Propety;

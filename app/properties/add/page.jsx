@@ -1,7 +1,5 @@
 const PropertyAddPage = () => {
-  return (
-    <div>PropertyAddPage</div>
-  )
-}
+  return <div>PropertyAddPage</div>;
+};
 
 export default PropertyAddPage;
