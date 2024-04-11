@@ -4,4 +4,4 @@ const PropertyAddPage = () => {
   )
 }
 
-export default PropertyAddPage
+export default PropertyAddPage;
