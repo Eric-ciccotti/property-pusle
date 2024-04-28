@@ -1,5 +1,8 @@
+'use client'
+import { useState, useEffect } from 'react';
 import PropertyDetails from '@/components/PropertyDetails';
 import PropertyHeaderImage from '@/components/PropertyHeaderImage';
+import Spinner from '@/components/Spinner';
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
@@ -8,15 +11,23 @@ import { FaArrowLeft, FaBookmark, FaShare, FaPaperPlane } from 'react-icons/fa';
 
 const PropetyPage = async ({params}) => {
 
-  await connectDB();
+  const [loading, setLoading] = useState(true);
+  const [property, setProperty] = useState(null)
 
-    // query the property in the DB
-    const propertyDoc = await Property.findById(params.id).lean();
-
-    //converted htmlFor instance 
-    //_id: new ObjectId('661bb2bde9dcc2fc31893a93') to 
-    //_id: "661bb2bde9dcc2fc31893a93"
-    const property = convertToSerializeableObject(propertyDoc);
+  useEffect(() => {
+    const fetchProperty = async () => {
+      await connectDB();
+      const propertyDoc = await Property.findById(params.id).lean();
+      const serializedProperty = convertToSerializeableObject(propertyDoc);
+      setProperty(serializedProperty)
+      setLoading(false)
+    }
+    fetchProperty()
+  }, [params.id])
+  
+    if(loading) {
+      return <Spinner loading={loading}/>
+    }
 
     if (!property) {
       return (
@@ -28,6 +39,7 @@ const PropetyPage = async ({params}) => {
   
 
   return <>
+  {}
   {property && (
     <>
     <PropertyHeaderImage image={property.images[0]}/>
