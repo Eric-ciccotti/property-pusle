@@ -16,17 +16,16 @@ const Navbar = () => {
   const [providers, setProviders] = useState(null);
   const pathName = usePathname();
 
-  const setAuthProviders = async () => {
-    const res = await getProviders();
-    setProviders(res);
-  };
-
   useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
     setAuthProviders();
   }, []);
 
-  console.log(providers);
-  console.log(session);
+  console.log('res', providers);
+  console.log('session', session);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -78,26 +77,23 @@ const Navbar = () => {
               <div className="flex space-x-2">
                 <Link
                   href="/"
-                  className={`${
-                    pathName === '/' ? 'bg-black' : ''
-                  } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                  className={`${pathName === '/' ? 'bg-black' : ''
+                    } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Home
                 </Link>
                 <Link
                   href="/properties"
-                  className={`${
-                    pathName === '/properties' ? 'bg-black' : ''
-                  } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                  className={`${pathName === '/properties' ? 'bg-black' : ''
+                    } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Properties
                 </Link>
                 {session && (
                   <Link
                     href="/properties/add"
-                    className={`${
-                      pathName === '/properties/add' ? 'bg-black' : ''
-                    } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                    className={`${pathName === '/properties/add' ? 'bg-black' : ''
+                      } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                   >
                     Add Property
                   </Link>
@@ -221,17 +217,15 @@ const Navbar = () => {
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
               href="/"
-              className={`${
-                pathName === '/' ? 'bg-black' : ''
-              } text-white block rounded-md px-3 py-2 text-base font-medium`}
+              className={`${pathName === '/' ? 'bg-black' : ''
+                } text-white block rounded-md px-3 py-2 text-base font-medium`}
             >
               Home
             </Link>
             <Link
               href="/properties"
-              className={`${
-                pathName === '/properties' ? 'bg-black' : ''
-              } text-white block rounded-md px-3 py-2 text-base font-medium`}
+              className={`${pathName === '/properties' ? 'bg-black' : ''
+                } text-white block rounded-md px-3 py-2 text-base font-medium`}
             >
               Properties
             </Link>
@@ -239,9 +233,8 @@ const Navbar = () => {
             {session && (
               <Link
                 href="/properties/add"
-                className={`${
-                  pathName === '/properties/add' ? 'bg-black' : ''
-                } text-white block rounded-md px-3 py-2 text-base font-medium`}
+                className={`${pathName === '/properties/add' ? 'bg-black' : ''
+                  } text-white block rounded-md px-3 py-2 text-base font-medium`}
               >
                 Add Property
               </Link>

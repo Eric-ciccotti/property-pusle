@@ -8,9 +8,9 @@ const UserSchema = new Schema({
     },
     username: {
         type: String,
-        required: [true,'Username is required']
+        required: [true, 'Username is required']
     },
-    image : {
+    image: {
         type: String
     },
     bookmarks: {
@@ -21,6 +21,6 @@ const UserSchema = new Schema({
     timestamps: true
 })
 
-const User = models.user || model('User', UserSchema);
+const User = models.User || model('User', UserSchema);
 
 export default User;
