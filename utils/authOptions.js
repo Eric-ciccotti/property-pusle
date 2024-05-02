@@ -1,4 +1,8 @@
 import GoogleProvider from 'next-auth/providers/google';
+import { HttpProxyAgent } from 'http-proxy-agent';
+
+const agent = new HttpProxyAgent(process.env.http_proxy);
+
 
 export const authOptions = {
   providers: [
@@ -27,7 +31,6 @@ export const authOptions = {
     //1. get user from db
     //2. assign the user id to the session
     //3. return session
-
   }
-}
+},
 };
