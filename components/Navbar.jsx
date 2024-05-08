@@ -25,8 +25,8 @@ const Navbar = () => {
     setAuthProviders();
   }, []);
 
-  console.log('res', providers);
-  console.log('session', session);
+
+
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -107,7 +107,7 @@ const Navbar = () => {
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
                 {providers &&
-                  Object.values(providers).map((provider, index) => {
+                  Object.values(providers).map((provider, index) => (
                     <button
                       onClick={() => signIn(provider)}
                       key={index}
@@ -115,8 +115,9 @@ const Navbar = () => {
                     >
                       <FaGoogle className="text-white mr-2" />
                       <span>Login or Register</span>
-                    </button>;
-                  })}
+                    </button>
+                  )
+                  )}
               </div>
             </div>
           )}
@@ -187,6 +188,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-0"
+                      onClick={() => setIsProfileMenuOpen(false)}
                     >
                       Your Profile
                     </Link>
@@ -196,6 +198,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-2"
+                      onClick={() => setIsProfileMenuOpen(false)}
                     >
                       Saved Properties
                     </Link>
@@ -204,6 +207,10 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-2"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false)
+                        signOut()
+                      }}
                     >
                       Sign Out
                     </button>
