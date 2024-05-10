@@ -9,12 +9,12 @@ async function fetchProperties() {
       return []
     }
 
-    const res = await fetch(`${apiDomain}/properties`);
+    const res = await fetch(`${apiDomain}/properties`, { 'no-cache'});
 
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
-    console.log('RESPONSE', res.json)
+
     return res.json();
   } catch (error) {
     console.log(error);
@@ -30,7 +30,7 @@ async function fetchProperty(id) {
       return null
     }
 
-    const res = await fetch(`${apiDomain}/properties/${id}`);
+    const res = await fetch(`${apiDomain}/properties/${id}`, { cache: 'no-store' });
 
     if (!res.ok) {
       throw new Error('Failed to fetch data');
